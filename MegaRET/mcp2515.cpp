@@ -18,7 +18,10 @@ bool MCP2515Driver::begin()
         return false;
     }
 
-    can.setMode(MCP_NORMAL);
+    if (can.setMode(MCP_NORMAL) != CAN_OK)
+    {
+        return false;
+    }
 
     pinMode(MCP2515_IRQ_PIN, INPUT_PULLUP);
     attachInterrupt(digitalPinToInterrupt(MCP2515_IRQ_PIN), canISR, FALLING);

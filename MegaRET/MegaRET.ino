@@ -13,7 +13,24 @@ GVRETProtocol gvret;
 void setup()
 {
     USBInit();
-    canDriver.begin();
+    USB.println("MegaRET initializing...");
+    USB.println("Waiting for MCP2515 CAN controller...");
+
+    if (!canDriver.begin())
+    {
+        USB.println("ERROR: Cannot communicate with MCP2515!");
+        USB.println("Check wiring:");
+        USB.println("  - CS pin (53) to MCP2515 CS");
+        USB.println("  - MOSI (51) to MCP2515 SI");
+        USB.println("  - MISO (50) to MCP2515 SO");
+        USB.println("  - SCK (52) to MCP2515 SCK");
+        USB.println("  - GND to MCP2515 GND");
+        USB.println("");
+        USB.println("Is the MCP2515 module connected and powered?");
+        while (1) { }
+    }
+
+    USB.println("MCP2515 found and configured!");
     gvret.init();
 }
 
