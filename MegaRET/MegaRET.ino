@@ -1,9 +1,9 @@
-#include "core/config.h"
-#include "core/frame.h"
-#include "drivers/mcp2515.h"
-#include "buffer/ringbuffer.h"
-#include "protocol/gvret.h"
-#include "usb/usb.h"
+#include "config.h"
+#include "frame.h"
+#include "mcp2515.h"
+#include "ringbuffer.h"
+#include "gvret.h"
+#include "usb.h"
 
 RingBuffer canRxBuffer;
 RingBuffer canTxBuffer;

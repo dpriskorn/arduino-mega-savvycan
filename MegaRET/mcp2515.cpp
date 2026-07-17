@@ -1,19 +1,24 @@
 #include "mcp2515.h"
-#include "core/config.h"
 
-MCP2515Driver::MCP2515Driver() : irqFlag(false)
+volatile bool canInterruptOccurred = false;
+
+void canISR()
+{
+    canInterruptOccurred = true;
+}
+
+MCP2515Driver::MCP2515Driver() : can(MCP2515_CS_PIN), irqFlag(false)
 {
 }
 
 bool MCP2515Driver::begin()
 {
-    if (CAN.begin(MCP_ANY, CAN0_SPEED, CAN0_CLOCK) != CAN_OK)
+    if (can.begin(MCP_ANY, CAN_500KBPS, CAN0_CLOCK) != CAN_OK)
     {
         return false;
     }
 
-    CAN.setMode(MCP_NORMAL);
-    reset();
+    can.setMode(MCP_NORMAL);
 
     pinMode(MCP2515_IRQ_PIN, INPUT_PULLUP);
     attachInterrupt(digitalPinToInterrupt(MCP2515_IRQ_PIN), canISR, FALLING);
@@ -23,18 +28,17 @@ bool MCP2515Driver::begin()
 
 void MCP2515Driver::reset()
 {
-    CAN.reset();
     irqFlag = false;
 }
 
 bool MCP2515Driver::setSpeed(uint8_t speed)
 {
-    return CAN.setBitrate(speed, CAN0_CLOCK) == CAN_OK;
+    return can.begin(MCP_ANY, speed, CAN0_CLOCK) == CAN_OK;
 }
 
 bool MCP2515Driver::setNormalMode()
 {
-    return CAN.setMode(MCP_NORMAL) == CAN_OK;
+    return can.setMode(MCP_NORMAL) == CAN_OK;
 }
 
 bool MCP2515Driver::isInterruptPending()
@@ -54,21 +58,24 @@ bool MCP2515Driver::available()
 
 bool MCP2515Driver::readFrame(CANFrame &frame)
 {
-    if (CAN.checkReceive() != CAN_MSGAVAIL)
+    if (can.checkReceive() != CAN_MSGAVAIL)
     {
         return false;
     }
 
-    frame.id = CAN.getCanId();
+    uint32_t id;
+    uint8_t ext;
+    uint8_t len;
+    can.readMsgBuf(&id, &ext, &len, frame.data);
 
-    uint8_t extFlag = 0;
-    CAN.readMsgBuf(&frame.dlc, frame.data);
-
-    extFlag = CAN.isExtendedFrame();
+    frame.id = id;
+    frame.dlc = len;
     frame.flags = 0;
-    if (extFlag) frame.flags |= CAN_FRAME_FLAG_EXTENDED;
+    if (ext) frame.flags |= CAN_FRAME_FLAG_EXTENDED;
 
-    if (CAN.isRemoteRequest()) frame.flags |= CAN_FRAME_FLAG_RTR;
+    if (can.checkReceive() == CAN_MSGAVAIL)
+    {
+    }
 
     frame.timestamp = micros();
 
@@ -80,10 +87,11 @@ bool MCP2515Driver::sendFrame(const CANFrame &frame)
     uint8_t len = frame.dlc;
     if (len > 8) len = 8;
 
-    uint8_t sendStat = CAN.sendMsgBuf(
+    uint8_t ext = (frame.flags & CAN_FRAME_FLAG_EXTENDED) ? 1 : 0;
+
+    uint8_t sendStat = can.sendMsgBuf(
         frame.id,
-        (frame.flags & CAN_FRAME_FLAG_EXTENDED) ? true : false,
-        (frame.flags & CAN_FRAME_FLAG_RTR) ? true : false,
+        ext,
         len,
         frame.data
     );

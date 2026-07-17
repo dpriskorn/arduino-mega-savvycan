@@ -1,8 +1,8 @@
 #ifndef RINGBUFFER_H
 #define RINGBUFFER_H
 
-#include "core/frame.h"
-#include "core/config.h"
+#include "frame.h"
+#include "config.h"
 
 class RingBuffer
 {

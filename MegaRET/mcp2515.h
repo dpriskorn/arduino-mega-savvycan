@@ -1,8 +1,12 @@
 #ifndef MCP2515_H
 #define MCP2515_H
 
-#include "core/frame.h"
+#include "frame.h"
+#include "config.h"
 #include <mcp_can.h>
+
+extern volatile bool canInterruptOccurred;
+void canISR();
 
 class MCP2515Driver
 {

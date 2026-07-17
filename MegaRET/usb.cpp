@@ -1,5 +1,5 @@
 #include "usb.h"
-#include "core/config.h"
+#include "config.h"
 
 void USBInit()
 {

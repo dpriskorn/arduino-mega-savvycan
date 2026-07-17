@@ -1,13 +1,6 @@
 #include "gvret.h"
-#include "usb/usb.h"
-#include "core/config.h"
-
-volatile bool canInterruptOccurred = false;
-
-void canISR()
-{
-    canInterruptOccurred = true;
-}
+#include "usb.h"
+#include "config.h"
 
 GVRETProtocol::GVRETProtocol()
     : state(STATE_IDLE)

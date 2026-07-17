@@ -1,8 +1,8 @@
 #ifndef GVRET_H
 #define GVRET_H
 
-#include "core/frame.h"
-#include "buffer/ringbuffer.h"
+#include "frame.h"
+#include "ringbuffer.h"
 
 #define GVRET_CMD_RESET           0x00
 #define GVRET_CMD_GET_VERSION     0x01
@@ -56,8 +56,5 @@ private:
     uint8_t txDataLen;
     uint32_t canSpeed;
 };
-
-extern volatile bool canInterruptOccurred;
-void canISR();
 
 #endif
