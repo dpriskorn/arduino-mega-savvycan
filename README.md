@@ -35,15 +35,27 @@ Most modern vehicles use pins 6 (CAN H) and 14 (CAN L) for the CAN bus.
 
 ### Wiring
 
-| Mega Pin | MCP2515 |
-|----------|---------|
-| 5V       | VCC     |
-| GND      | GND     |
-| 50       | MISO    |
-| 51       | MOSI    |
-| 52       | SCK     |
-| 53       | CS      |
-| 2        | INT     |
+| Mega Pin | MCP2515 | Function |
+|----------|---------|----------|
+| 5V       | VCC     | Power    |
+| GND      | GND     | Ground   |
+| 50       | MISO    | SPI Data In |
+| 51       | MOSI    | SPI Data Out |
+| 52       | SCK     | SPI Clock |
+| 53       | CS      | Chip Select |
+| 2        | INT     | Interrupt |
+
+### Pinout References
+
+- **Arduino Mega 2560**: [Official pinout PDF](https://docs.arduino.cc/resources/pinouts/A000067-full-pinout.pdf)
+- **MCP2515 module**: Most modules have pins labeled on the board. The standard pinout is:
+  - `VCC` - 5V power
+  - `GND` - Ground
+  - `SI` - Serial Data In (MOSI)
+  - `SO` - Serial Data Out (MISO)
+  - `SCK` - Clock
+  - `CS` - Chip Select
+  - `INT` - Interrupt output
 
 ## Architecture
 
