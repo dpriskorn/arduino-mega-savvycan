@@ -20,6 +20,19 @@ This [DB9 to OBD2 cable](https://www.amazon.se/gp/product/B0F8VN8S17) connects t
 
 For OBD2 pinout and introduction, see [css-selectronics OBD2 explained](https://www.csselectronics.com/pages/obd2-explained-simple-intro).
 
+![OBD2 Connector Pinout](https://www.csselectronics.com/cdn/shop/files/obd2-connector-pinout-socket.svg?v=1633690039)
+
+### CAN Pins on OBD2
+
+| Pin | Function | Description |
+|-----|----------|-------------|
+| 6   | CAN High | J1850 / ISO 11989-2 CAN-H (11-bit) |
+| 14  | CAN Low  | J1850 / ISO 11989-2 CAN-L (11-bit) |
+| 7   | K-Line   | ISO 9141-2 / ISO 14230 K-LINE |
+| 15  | L-Line   | ISO 9141-2 / ISO 14230 L-LINE |
+
+Most modern vehicles use pins 6 (CAN H) and 14 (CAN L) for the CAN bus.
+
 ### Wiring
 
 | Mega Pin | MCP2515 |
