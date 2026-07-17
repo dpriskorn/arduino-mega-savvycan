@@ -18,6 +18,8 @@ This [MCP2515 module on Amazon](https://www.amazon.se/gp/product/B086TXSFD8) wor
 
 This [DB9 to OBD2 cable](https://www.amazon.se/gp/product/B0F8VN8S17) connects the MCP2515 module to your vehicle's OBD2 port.
 
+For OBD2 pinout and introduction, see [css-selectronics OBD2 explained](https://www.csselectronics.com/pages/obd2-explained-simple-intro).
+
 ### Wiring
 
 | Mega Pin | MCP2515 |
