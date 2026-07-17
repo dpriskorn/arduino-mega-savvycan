@@ -139,6 +139,10 @@ struct CANFrame
 4. Upload
 5. Connect to SavvyCAN using GVRET connection type
 
+## See Also
+
+- [CAN Bus Reverse Engineering with AI/LLM](https://www.csselectronics.com/pages/can-bus-reverse-engineering-ai-llm-claude) - Using AI to decode CAN traffic
+
 ## License
 
 MIT License - see [license.txt](MegaRET/license.txt)
