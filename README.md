@@ -93,4 +93,4 @@ struct CANFrame
 
 ## License
 
-MIT
+MIT License - see [license.txt](MegaRET/license.txt)
