@@ -136,12 +136,15 @@ struct CANFrame
 
 ## Requirements
 
-- [mcp_can library](https://github.com/coryjfowler/mcp_can_lib)
-- Arduino IDE 1.8+
+- [mcp_can library](https://github.com/coryjfowler/mcp_can_lib) (installed via CLI, not copied)
+- Arduino IDE 1.8+ or arduino-cli
 
 ## Usage
 
-1. Install the mcp_can library in your Arduino/libraries folder
+1. Install the mcp_can library:
+   ```
+   arduino-cli lib install "mcp_can"
+   ```
 2. Open MegaRET.ino in Arduino IDE
 3. Select Arduino Mega 2560 as board
 4. Upload
