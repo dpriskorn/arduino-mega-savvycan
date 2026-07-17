@@ -191,3 +191,9 @@ One warning: AI is much better at **finding candidate signals** than proving the
 * Does it survive different conditions?
 
 For a 2007 Ceed, I would expect you could probably decode **a useful subset (speed, RPM, temperatures, switches)** with a few hours of carefully collected CAN data. A full vehicle DBC is a much larger project.
+
+---
+
+## See also
+
+* [commaai/opendbc](https://github.com/commaai/opendbc) - Open DBC files and CAN tools
