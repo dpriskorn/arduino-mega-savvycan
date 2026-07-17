@@ -25,10 +25,35 @@ Inspired by [esp32_can](https://github.com/collin80/esp32_can).
 ## Architecture
 
 ```
-CAN Bus → MCP2515 (interrupt) → Mega → USB CDC → SavvyCAN
+SavvyCAN
+    |
+USB CDC
+    |
+GVRET binary protocol
+    |
+MegaRET
+    |
+ringbuffer (128 frames)
+    |
+MCP2515 (interrupt-driven)
+    |
+CAN Bus
 ```
 
-- **Interrupt-driven**: No polling, uses MCP2515 IRQ pin
+### Data Flow
+
+```
+1. CAN Bus → MCP2515 generates interrupt
+2. canISR() sets flag → canInterruptOccurred = true
+3. loop() detects flag, calls readCANFrames()
+4. MCP2515Driver reads frame via SPI
+5. Frame stored in RingBuffer
+6. loop() sends frames via USB using GVRET binary protocol
+```
+
+### Key Features
+
+- **Interrupt-driven**: No polling, uses MCP2515 IRQ pin (Mega pin 2)
 - **Binary GVRET protocol**: No ASCII output, minimal bandwidth
 - **Ringbuffer**: 128 frame buffer for burst traffic
 - **Modular design**: Easy to port to ESP32, BeagleBone, etc.
