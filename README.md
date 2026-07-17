@@ -7,8 +7,12 @@ Inspired by [esp32_can](https://github.com/collin80/esp32_can).
 ## Hardware
 
 - Arduino Mega 2560
-- MCP2515 CAN module
+- MCP2515 CAN module with SPI interface
 - SN65HVD230 / TJA1050 / MCP2551 transceiver
+
+### Recommended CAN Module
+
+This [MCP2515 module on Amazon](https://www.amazon.se/gp/product/B086TXSFD8) works well with the wiring below.
 
 ### Wiring
 
