@@ -14,6 +14,10 @@ Inspired by [esp32_can](https://github.com/collin80/esp32_can).
 
 This [MCP2515 module on Amazon](https://www.amazon.se/gp/product/B086TXSFD8) works well with the wiring below.
 
+### OBD2 Cable
+
+This [DB9 to OBD2 cable](https://www.amazon.se/gp/product/B0F8VN8S17) connects the MCP2515 module to your vehicle's OBD2 port.
+
 ### Wiring
 
 | Mega Pin | MCP2515 |
