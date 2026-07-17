@@ -97,18 +97,14 @@ CAN Bus
 
 ```
 MegaRET/
-├── MegaRET.ino          # Main sketch
-├── core/
-│   ├── config.h        # Configuration (pins, speed, buffer size)
-│   └── frame.h         # CANFrame structure
-├── drivers/
-│   └── mcp2515.cpp/h   # MCP2515 driver with interrupt support
-├── buffer/
-│   └── ringbuffer.cpp/h
-├── protocol/
-│   └── gvret.cpp/h     # GVRET binary protocol
-└── usb/
-    └── usb.cpp/h        # USB CDC interface
+├── MegaRET.ino        # Main sketch
+├── config.h           # Configuration (pins, speed, buffer size)
+├── frame.h            # CANFrame structure
+├── mcp2515.cpp/h      # MCP2515 driver with interrupt support
+├── ringbuffer.cpp/h
+├── gvret.cpp/h        # GVRET binary protocol
+├── usb.cpp/h          # USB CDC interface
+└── license.txt        # MIT License
 ```
 
 ## CANFrame Structure
